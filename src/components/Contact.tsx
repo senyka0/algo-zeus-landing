@@ -56,7 +56,7 @@ export default function Contact() {
       <div
         className="mb-[250px] mt-[200px] h-full flex justify-center items-center"
         style={{
-          backgroundImage: "url(/background.svg)",
+          backgroundImage: "url(/hedge-fund-landing/background.svg)",
           backgroundSize: "cover",
         }}
       >
