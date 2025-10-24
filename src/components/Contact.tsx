@@ -27,39 +27,16 @@ export default function Contact() {
       setErrorVisible(true);
       return;
     }
-    try {
-      const response = await fetch("/.netlify/functions/subscribe", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
-      
-      const res = await response.json();
-      
-      if (res.status === 200) {
-        setErrorVisible(false);
-        setMessage(res.message);
-        setAlertVisible(true);
-        setEmail("");
-      } else {
-        setAlertVisible(false);
-        setMessage(res.error);
-        setErrorVisible(true);
-      }
-    } catch (error) {
-      const subject = "Newsletter Subscription";
-      const body = `Please add ${email} to your newsletter subscription list.`;
-      const mailtoLink = `mailto:contact@algozeus.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      
-      window.location.href = mailtoLink;
-      
-      setErrorVisible(false);
-      setMessage("Email client opened. Please send the email to complete your subscription.");
-      setAlertVisible(true);
-      setEmail("");
-    }
+    const subject = "Newsletter Subscription";
+    const body = `Please add ${email} to your newsletter subscription list.`;
+    const mailtoLink = `mailto:contact@algozeus.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    window.location.href = mailtoLink;
+    
+    setErrorVisible(false);
+    setMessage("Email client opened. Please send the email to complete your subscription.");
+    setAlertVisible(true);
+    setEmail("");
   };
 
   useEffect(() => {
@@ -79,7 +56,7 @@ export default function Contact() {
       <div
         className="mb-[250px] mt-[200px] h-full flex justify-center items-center"
         style={{
-          backgroundImage: "url(/hedge-fund-landing/background.svg)",
+          backgroundImage: "url(/background.svg)",
           backgroundSize: "cover",
         }}
       >

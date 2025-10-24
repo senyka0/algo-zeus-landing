@@ -5,8 +5,9 @@ const nextConfig = {
     images: {
         unoptimized: true
     },
-    basePath: '/hedge-fund-landing',
-    assetPrefix: '/hedge-fund-landing/',
+    // Remove basePath and assetPrefix for GitHub Pages root deployment
+    // basePath: '/hedge-fund-landing',
+    // assetPrefix: '/hedge-fund-landing/',
 };
 
 export default nextConfig;
