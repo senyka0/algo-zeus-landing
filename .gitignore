@@ -35,3 +35,5 @@ algozeus-53ef21de39f3.json
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+deploy/

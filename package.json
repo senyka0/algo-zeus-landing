@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next build && next export",
-    "deploy": "npm run build && touch out/.nojekyll && mkdir -p out/hedge-fund-landing && mv out/_next out/hedge-fund-landing/ && mv out/background.svg out/hedge-fund-landing/ && mv out/portfolio.svg out/hedge-fund-landing/ && mv out/favicon.ico out/hedge-fund-landing/ && mv out/index.html out/hedge-fund-landing/ && gh-pages -d out",
+    "deploy": "npm run build && touch out/.nojekyll && rm -rf deploy && mkdir -p deploy/hedge-fund-landing && cp -r out/* deploy/hedge-fund-landing/ && touch deploy/.nojekyll && gh-pages -d deploy",
     "predeploy": "npm run build"
   },
   "dependencies": {
