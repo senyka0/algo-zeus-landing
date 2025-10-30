@@ -5,10 +5,13 @@ export const fetchBinanceData = async (
   interval: string,
   limit: number
 ) => {
-  const apiEndpoint = "https://api.binance.com/api/v3/klines";
+  const minLimit = Math.max(1, limit || 0);
+  const proxy = process.env.NEXT_PUBLIC_CORS_PROXY || "";
+  const target = "https://api.binance.com/api/v3/klines";
+  const apiEndpoint = proxy ? `${proxy}${target}` : target;
   try {
     const response = await axios.get(apiEndpoint, {
-      params: { symbol: symbol, interval: interval, limit: limit },
+      params: { symbol: symbol, interval: interval, limit: minLimit },
     });
     const closePrices = response.data.map((candle: Array<string | number>) =>
       parseFloat(candle[4] as string)

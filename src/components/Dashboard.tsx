@@ -2,6 +2,9 @@ import Image from "next/image";
 import { DataProps } from "@/global";
 
 export default function Dashboard({ data = [] }: DataProps) {
+  if (!data || data.length < 2) {
+    return null;
+  }
   const total_return =
     (data[data.length - 1]["Performance"] / data[0]["Performance"] - 1) * 100;
   const returns = data

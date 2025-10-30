@@ -12,8 +12,8 @@ import {
 } from "@enzymefinance/api";
 import { VaultData } from "@/global";
 
-const token = process.env.ENZYME_API_TOKEN || "";
-const enzymeAddress = process.env.ENZYME_VAULT_ADDRESS || "";
+const token = process.env.NEXT_PUBLIC_ENZYME_API_TOKEN || "";
+const enzymeAddress = process.env.NEXT_PUBLIC_ENZYME_VAULT_ADDRESS || "";
 const transport = createConnectTransport(
   withTokenAuth(token, {
     baseUrl: "https://api.enzyme.finance",
@@ -23,6 +23,9 @@ const transport = createConnectTransport(
 const client = createClient(transport);
 
 export const fetchVaultData = async (): Promise<VaultData[]> => {
+  if (!token || !enzymeAddress) {
+    return [];
+  }
   const to = new Date(new Date().setUTCHours(0, 0, 0, 0));
   const from = new Date(new Date(to).setFullYear(to.getFullYear() - 2));
 
