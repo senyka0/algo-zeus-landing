@@ -1,6 +1,6 @@
 # Algo Zeus Landing
 
-Landing page built with Next.js 14 and static export output.
+Landing page built with Next.js 14.
 
 ## Requirements
 
@@ -24,21 +24,27 @@ npm run build
 
 ## Vercel deployment
 
-This project is configured to deploy at root path on Vercel.
+This project is configured for normal Next.js deployment on Vercel.
 
 1. Import the repository into Vercel.
 2. Keep default build command: `npm run build`.
-3. Keep default output behavior for Next.js.
+3. Keep framework preset as `Next.js`.
 4. Deploy.
 
-If you previously had 404 after successful build, redeploy after pulling latest changes so `basePath` is not forced to `/hedge-fund-landing` on Vercel.
+If you previously had 404 after successful build, redeploy after pulling latest changes because the old GitHub Pages path config was removed.
 
-## GitHub Pages deployment
+## Environment variables
 
-For subpath hosting, set:
+Set these in Vercel Project Settings -> Environment Variables:
 
-```bash
-NEXT_PUBLIC_BASE_PATH=/hedge-fund-landing npm run build
-```
+- `ENZYME_API_TOKEN`
+- `ENZYME_VAULT_ADDRESS`
+- `TELEGRAM_BOT_TOKEN`
+- `TELEGRAM_CHAT_IDS` (space-separated chat IDs)
+- `SPREADSHEET_ID`
+- `GOOGLE_SERVICE_ACCOUNT_JSON` (full JSON string for Google service account credentials)
 
-Then publish the generated `out` directory using your Pages workflow.
+Notes:
+
+- `GOOGLE_SERVICE_ACCOUNT_JSON` is now supported directly for Vercel.
+- If `GOOGLE_SERVICE_ACCOUNT_JSON` is not set, the app falls back to a local credentials file named `algozeus-53ef21de39f3.json`.
