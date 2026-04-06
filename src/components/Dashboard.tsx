@@ -16,7 +16,7 @@ export default function Dashboard({ data = [] }: DataProps) {
     (returns.reduce((a, b) => (a || 0) + (b || 0), 0) || 0) / returns.length;
   const std_dev = Math.sqrt(
     returns.map((x) => Math.pow((x || 0) - avg, 2)).reduce((a, b) => a + b) /
-      returns.length
+      returns.length,
   );
   const sharpe = (avg / std_dev) * Math.sqrt(365.25);
 
@@ -27,9 +27,9 @@ export default function Dashboard({ data = [] }: DataProps) {
         <div className="z-10 w-full h-full">
           <Image
             className="border-[1px] border-[#4A4A61] rounded-[39px] object-cover object-center w-full h-full"
-            src="/hedge-fund-landing/portfolio.svg"
+            src="/portfolio.svg"
             alt="Portfolio"
-            layout="fill"
+            fill
             priority
           />
         </div>
