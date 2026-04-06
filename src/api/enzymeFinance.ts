@@ -12,17 +12,25 @@ import {
 } from "@enzymefinance/api";
 import { VaultData } from "@/global";
 
-const token = process.env.ENZYME_API_TOKEN || "";
-const enzymeAddress = process.env.ENZYME_VAULT_ADDRESS || "";
-const transport = createConnectTransport(
-  withTokenAuth(token, {
-    baseUrl: "https://api.enzyme.finance",
-    httpVersion: "2",
-  } as ConnectTransportOptions)
-);
-const client = createClient(transport);
+const normalizeEnv = (value: string | undefined) =>
+  (value ?? "").trim().replace(/^['"]|['"]$/g, "");
 
 export const fetchVaultData = async (): Promise<VaultData[]> => {
+  const token = normalizeEnv(process.env.ENZYME_API_TOKEN);
+  const enzymeAddress = normalizeEnv(process.env.ENZYME_VAULT_ADDRESS);
+  if (!token) {
+    throw new Error("Missing ENZYME_API_TOKEN");
+  }
+  if (!enzymeAddress) {
+    throw new Error("Missing ENZYME_VAULT_ADDRESS");
+  }
+  const transport = createConnectTransport(
+    withTokenAuth(token, {
+      baseUrl: "https://api.enzyme.finance",
+      httpVersion: "2",
+    } as ConnectTransportOptions)
+  );
+  const client = createClient(transport);
   const to = new Date(new Date().setUTCHours(0, 0, 0, 0));
   const from = new Date(new Date(to).setFullYear(to.getFullYear() - 2));
 
