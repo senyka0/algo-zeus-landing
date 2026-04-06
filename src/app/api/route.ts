@@ -2,6 +2,8 @@ import { google } from "googleapis";
 import { type NextRequest } from "next/server";
 import path from "path";
 
+export const preferredRegion = "fra1";
+
 const { TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_IDS, SPREADSHEET_ID } = process.env;
 const apiUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 const chatIds = TELEGRAM_CHAT_IDS?.split(" ") || [];

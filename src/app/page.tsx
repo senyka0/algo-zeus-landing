@@ -6,6 +6,7 @@ import { fetchVaultData } from "@/api/enzymeFinance";
 import { fetchBinanceData } from "@/api/binance";
 
 export const revalidate = 0;
+export const preferredRegion = "fra1";
 
 export default async function Home() {
   const data = await fetchVaultData();
